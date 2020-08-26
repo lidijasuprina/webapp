@@ -42,87 +42,78 @@ $result_user = sqlQuery($db, $sql_apply);
 
 ?>
 
+
 <table style="width: 100%">
+
+    <caption>My Workout Schedule</caption>
     <tr>
-        <td class="adjust"></td>
-        <td>
-            <table style="width: 100%">
-                <caption>My Workout Schedule</caption>
-                <tr>
-                    <th>Workout</th>
-                    <th>Coach</th>
-                    <th>Day</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
+        <th>Workout</th>
+        <th>Coach</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
 
-                </tr>
-
-                <?php
-                if (mysqli_num_rows($result_user) > 0) {
-                    while($row_user = mysqli_fetch_assoc($result_user)) {
-                        echo '<tr>
-                                        <td>'.$row_user['workout'].'</td>
-                                        <td>'.$row_user['first_name']." ".$row_user['surname'].'</td>
-                                        <td>'.$row_user['day'].'</td>
-                                        <td>'.$row_user['start_time'].'</td>
-                                        <td>'.$row_user['end_time'].'</td>
-                                        <td>
-                                            <form method="post" action="member.php">
-                                                <input type="submit" name="delete" value="DELETE">
-                                                <input type="hidden" name="id" value="'.$row_user['id'].'">
-                                            </form>
-                                        </td>
-                                  </tr>';
-                    }
-                }
-                ?>
-
-            </table>
-        </td>
-        <td class="adjust"></td>
     </tr>
 
+    <?php
+    if (mysqli_num_rows($result_user) > 0) {
+        while($row_user = mysqli_fetch_assoc($result_user)) {
+            echo '<tr>
+                            <td>'.$row_user['workout'].'</td>
+                            <td>'.$row_user['first_name']." ".$row_user['surname'].'</td>
+                            <td>'.$row_user['day'].'</td>
+                            <td>'.$row_user['start_time'].'</td>
+                            <td>'.$row_user['end_time'].'</td>
+                            <td>
+                                <form method="post" action="member.php">
+                                    <input type="submit" name="delete" value="DELETE">
+                                    <input type="hidden" name="id" value="'.$row_user['id'].'">
+                                </form>
+                            </td>
+                      </tr>';
+        }
+    }
+    ?>
 
-    <tr>
-        <td class="adjust"></td>
-        <td>
-            <table style="width: 100%">
-                <caption>Apply for another Workout</caption>
-                <tr>
-                    <th>Workout</th>
-                    <th>Coach</th>
-                    <th>Day</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-
-                </tr>
-
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>
-                                        <td>'.$row['workout'].'</td>
-                                        <td>'.$row['first_name']." ".$row['surname'].'</td>
-                                        <td>'.$row['day'].'</td>
-                                        <td>'.$row['start_time'].'</td>
-                                        <td>'.$row['end_time'].'</td>
-                                        
-                                        <td>
-                                            <form method="post" action="member.php">
-                                                <input type="submit" name="apply" value="APPLY">
-                                                <input type="hidden" name="id" value="'.$row['id'].'">
-                                            </form>
-                                        </td>
-                                  </tr>';
-                    }
-                }
-                ?>
-
-            </table>
-        </td>
-        <td class="adjust"></td>
-    </tr>
 </table>
+
+
+<table style="width: 100%">
+
+    <caption>Apply for another Workout</caption>
+    <tr>
+        <th>Workout</th>
+        <th>Coach</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+
+    </tr>
+
+    <?php
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo '<tr>
+                            <td>'.$row['workout'].'</td>
+                            <td>'.$row['first_name']." ".$row['surname'].'</td>
+                            <td>'.$row['day'].'</td>
+                            <td>'.$row['start_time'].'</td>
+                            <td>'.$row['end_time'].'</td>
+                            
+                            <td>
+                                <form method="post" action="member.php">
+                                    <input type="submit" name="apply" value="APPLY">
+                                    <input type="hidden" name="id" value="'.$row['id'].'">
+                                </form>
+                            </td>
+                      </tr>';
+        }
+    }
+    ?>
+
+</table>
+
+
 <?php
 close_db_connection($db);
 include("footer.php");

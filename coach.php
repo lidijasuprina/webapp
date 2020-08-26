@@ -18,68 +18,63 @@ $result = sqlQuery($db, $sql);
 
 ?>
 
-    <form method="post" action="coach_wm.php">
-        <input type="submit" name="edit" value="WORKOUT MEMBERS">
-    </form>
+<form method="post" action="coach_wm.php">
+    <input type="submit" name="edit" value="WORKOUT MEMBERS">
+</form>
 
-<table>
+
+<table style="width:100%">
+    <caption>Workout Schedule</caption>
     <tr>
-        <td class="adjust"></td>
-        <td>
-            <table style="width:100%">
-                <caption>Workout Schedule</caption>
-                <tr>
-                    <th>Workout</th>
-                    <th>Coach</th>
-                    <th>Day</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
+        <th>Workout</th>
+        <th>Coach</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
 
-                </tr>
+    </tr>
 
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        $workout_id=$row['workout_id'];
-                        echo '<tr>
-                                        <td>'.$row['workout'].'</td>
-                                        <td>'.$row['first_name']." ".$row['surname'].'</td>
-                                        <td>'.$row['day'].'</td>
-                                        <td>'.$row['start_time'].'</td>
-                                        <td>'.$row['end_time'].'</td>
-                                        
-                                        <td>
-                                            <form method="post" action="edit.php?work_id='.$workout_id.'">
-                                                <input type="submit" name="edit" value="EDIT">
-                                                <input type="hidden" name="id" value="'.$workout_id.'">
-                                            </form>
-                                        </td>
-                                        
-                                        <td>
-                                            <form method="post" action="coach.php">
-                                                <input type="submit" name="delete" value="DELETE">
-                                                <input type="hidden" name="id" value="'.$row['workout_id'].'">
-                                            </form>
-                                        </td>
-                                  </tr>';
-                    }
-                    echo'
-                        <tr>
+    <?php
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $workout_id=$row['workout_id'];
+            echo '<tr>
+                            <td>'.$row['workout'].'</td>
+                            <td>'.$row['first_name']." ".$row['surname'].'</td>
+                            <td>'.$row['day'].'</td>
+                            <td>'.$row['start_time'].'</td>
+                            <td>'.$row['end_time'].'</td>
+                            
                             <td>
-                                <form method="post" action="add_new_workout.php">
-                                    <input type="submit" name="add_new" value="ADD NEW">
+                                <form method="post" action="edit.php?work_id='.$workout_id.'">
+                                    <input type="submit" name="edit" value="EDIT">
+                                    <input type="hidden" name="id" value="'.$workout_id.'">
                                 </form>
                             </td>
-                        </tr>
-                    ';
-                }
-                ?>
+                            
+                            <td>
+                                <form method="post" action="coach.php">
+                                    <input type="submit" name="delete" value="DELETE">
+                                    <input type="hidden" name="id" value="'.$row['workout_id'].'">
+                                </form>
+                            </td>
+                      </tr>';
+        }
+        echo'
+            <tr>
+                <td>
+                    <form method="post" action="add_new_workout.php">
+                        <input type="submit" name="add_new" value="ADD NEW">
+                    </form>
+                </td>
+            </tr>
+        ';
+    }
+    ?>
 
-            </table>
-        </td>
-        <td class="adjust"></td>
-    </tr>
 </table>
+
+
 <?php
 close_db_connection($db);
 include("footer.php");

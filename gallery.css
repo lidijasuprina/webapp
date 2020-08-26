@@ -1,5 +1,5 @@
 .row_gallery > .column_gallery {
-    padding: 5px;
+    padding: 3px;
 }
 
 .row_gallery:after {
@@ -10,7 +10,7 @@
 
 .column_gallery {
     float: left;
-    width: 20%;
+    width: 15%;
 }
 
 .modal_background_gallery {

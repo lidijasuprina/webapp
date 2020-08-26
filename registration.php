@@ -42,95 +42,89 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-    <table>
+
+<form id="register" name="register" method="POST" action="registration.php">
+    <table width="100%">
+        <caption>Registration</caption>
+        <tbody>
         <tr>
-            <td class="adjust"></td>
-            <td>
-                <form id="register" name="register" method="POST" action="registration.php">
-                    <table width="100%">
-                        <caption>Registration</caption>
-                        <tbody>
-                        <tr>
-                            <td colspan="2" style="text-align:center;">
-                                <label class="error"><?php if($error!="")echo $error; ?></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="first_name"><strong>* Name:</strong></label>
-                            </td>
-                            <td>
-                                <input name="first_name" id="first_name" type="text" size="50" required autofocus/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="surname"><strong>* Surname:</strong></label>
-                            </td>
-                            <td>
-                                <input name="surname" id="surname" type="text" size="50" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="email"><strong>* Email:</strong></label>
-                            </td>
-                            <td>
-                                <input name="email" id="email" type="email" size="50" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="password1"><strong>* Password:</strong></label>
-                            </td>
-                            <td>
-                                <input name="password1"	id="password1" type="password" size="50" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="password2"><strong>* Repeat password:</strong></label>
-                            </td>
-                            <td>
-                                <input name="password2"	id="password2" type="password" size="50" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="birth"><strong>* Date of birth:</strong></label>
-                            </td>
-                            <td>
-                                <input name="birth" id="birth" type="date" size="90" required/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="gender"><strong>* Gender:</strong></label>
-                            </td>
-                            <td>
-                                <input type="radio" id="male" name="gender" value="1">
-                                <label for="male">Male</label>
-                                <input type="radio" id="female" name="gender" value="2">
-                                <label for="female">Female</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center">
-                                * required field
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align:center;">
-                                <input name="submit" type="submit" value="SIGN UP"/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
+            <td colspan="2" style="text-align:center;">
+                <label class="error"><?php if($error!="")echo $error; ?></label>
             </td>
-            <td class="adjust"></td>
         </tr>
+        <tr>
+            <td class="left">
+                <label for="first_name"><strong>* Name:</strong></label>
+            </td>
+            <td>
+                <input name="first_name" id="first_name" type="text" size="50" required autofocus/>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <label for="surname"><strong>* Surname:</strong></label>
+            </td>
+            <td>
+                <input name="surname" id="surname" type="text" size="50" required/>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <label for="email"><strong>* Email:</strong></label>
+            </td>
+            <td>
+                <input name="email" id="email" type="email" size="50" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password1"><strong>* Password:</strong></label>
+            </td>
+            <td>
+                <input name="password1"	id="password1" type="password" size="50" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password2"><strong>* Repeat password:</strong></label>
+            </td>
+            <td>
+                <input name="password2"	id="password2" type="password" size="50" required/>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <label for="birth"><strong>* Date of birth:</strong></label>
+            </td>
+            <td>
+                <input name="birth" id="birth" type="date" size="90" required/>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <label for="gender"><strong>* Gender:</strong></label>
+            </td>
+            <td>
+                <input type="radio" id="male" name="gender" value="1">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="2">
+                <label for="female">Female</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                * required field
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input name="submit" type="submit" value="SIGN UP"/>
+            </td>
+        </tr>
+        </tbody>
     </table>
+</form>
+
 
 <?php
 close_db_connection($db);

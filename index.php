@@ -13,54 +13,36 @@ $result = mysqli_query($db, $sql);
 
 ?>
 
-<table>
-    <tr>
-        <td class="adjust"></td>
-        <td>
-            <p>Sports and Recreational Association FIT was founded in order to organize, promote, develop and improve the
-                entire sport and sports recreation in the City of Petrinja and the area of Sisačko-moslavačka County.</p>
-        </td>
-        <td>
-        </td>
-    </tr>
-    <tr>
-        <td class="adjust"></td>
-        <td>
-            <img src="images/background.jpg" style="width: 100%">
-        </td>
-        <td class="adjust"></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <table style="width:100%">
-                <caption>Workout Schedule</caption>
-                <tr>
-                    <th>Workout</th>
-                    <th>Coach</th>
-                    <th>Day</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                </tr>
 
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>
-                                        <td>'.$row['workout'].'</td>
-                                        <td>'.$row['first_name']." ".$row['surname'].'</td>
-                                        <td>'.$row['day'].'</td>
-                                        <td>'.$row['start_time'].'</td>
-                                        <td>'.$row['end_time'].'</td>
-                                  </tr>';
-                    }
-                }
-                ?>
-
-            </table>
-        </td>
-        <td class="adjust"></td>
+<p>Sports and Recreational Association FIT was founded in order to organize, promote, develop and improve the
+    entire sport and sports recreation in the City of Petrinja and the area of Sisačko-moslavačka County.</p>
+<br>
+<img src="images/background.jpg" alt="Working out" style="width: 100%">
+<hr>
+<table style="width:100%">
+    <caption>Workout Schedule</caption>
+    <tr>
+        <th>Workout</th>
+        <th>Coach</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
     </tr>
+
+    <?php
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo '<tr>
+                            <td>'.$row['workout'].'</td>
+                            <td>'.$row['first_name']." ".$row['surname'].'</td>
+                            <td>'.$row['day'].'</td>
+                            <td>'.$row['start_time'].'</td>
+                            <td>'.$row['end_time'].'</td>
+                      </tr>';
+        }
+    }
+    ?>
+
 </table>
 
 <?php

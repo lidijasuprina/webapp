@@ -54,54 +54,47 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-    <table>
+<form id="login" name="login" method="POST" action="login.php" >
+    <table style="width: 100%">
+        <caption>Login</caption>
+        <tbody>
         <tr>
-            <td class="adjust"></td>
-            <td>
-                <form id="login" name="login" method="POST" action="login.php" >
-                    <table style="width: 100%">
-                        <caption>Login</caption>
-                        <tbody>
-                        <tr>
-                            <td colspan="2" style="text-align:center;">
-                                <label class="error"><?php if($error!="")echo $error; ?></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <label for="email"><strong>Email:</strong></label>
-                            </td>
-                            <td>
-                                <input name="email" id="email" type="email" size="30" required autofocus/>
-                                *
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="password"><strong>Password:</strong></label>
-                            </td>
-                            <td>
-                                <input name="password"	id="password" type="password" size="30" required/>
-                                *
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align: center">
-                                * required field
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="text-align:center;">
-                                <input name="submit" type="submit" value="LOG IN"/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
+            <td colspan="2" style="text-align:center;">
+                <label class="error"><?php if($error!="")echo $error; ?></label>
             </td>
-            <td class="adjust"></td>
         </tr>
+        <tr>
+            <td class="left">
+                <label for="email"><strong>Email:</strong></label>
+            </td>
+            <td>
+                <input name="email" id="email" type="email" size="30" required autofocus/>
+                *
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password"><strong>Password:</strong></label>
+            </td>
+            <td>
+                <input name="password"	id="password" type="password" size="30" required/>
+                *
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                * required field
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input name="submit" type="submit" value="LOG IN"/>
+            </td>
+        </tr>
+        </tbody>
     </table>
+</form>
+
 
 <?php
 close_db_connection($db);

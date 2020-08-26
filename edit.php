@@ -54,110 +54,106 @@ $result_coach="";
 
 ?>
 
-    <form method="post" action="coach.php">
-        <input type="submit" name="coach" value="BACK">
-    </form>
-<table>
-    <tr>
-        <td class="adjust"></td>
-        <td>
-            <form method="POST" action="edit.php?work_id=<?php echo $w_id ?>">
-                <table style="width: 100%">
-                    <caption>Edit workout schedule</caption>
-                    <tbody>
-
-                    <tr>
-                        <th>Workout</th>
-                        <th>Coach</th>
-                        <th>Day</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" style="text-align:center">
-                            <label class="error"><?php if($error!="")echo $error; ?></label>
-                        </td>
-                    </tr>
+<form method="post" action="coach.php">
+    <input type="submit" name="coach" value="BACK">
+</form>
 
 
-                    <tr>
-                        <td colspan="2">
-                            <input type="hidden" name="new" value="<?php if(!empty($workout_id))echo $workout_id;else echo 1;?>"/>
-                        </td>
-                    </tr>
+<form method="POST" action="edit.php?work_id=<?php echo $w_id ?>">
+    <table style="width: 100%">
+        <caption>Edit workout schedule</caption>
+        <tbody>
 
-                    <?php
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
+        <tr>
+            <th>Workout</th>
+            <th>Coach</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+        </tr>
 
-                            if ($row['workout_id'] == $w_id) {
-                                echo '<tr>
-                                        <td><input name="workout" id="workout" type="text" value="' . $row['workout'] . '" required></td>';
-                                echo '<td><select id="coach" name="coach">';
-                                $sql_coach = "SELECT u.id as user_id, u.name as first_name, u.surname as surname FROM user u where user_type=2";
-                                $result_coach = sqlQuery($db, $sql_coach);
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <label class="error"><?php if($error!="")echo $error; ?></label>
+            </td>
+        </tr>
 
-                                if (mysqli_num_rows($result_coach) > 0) {
-                                    while ($row_coach = mysqli_fetch_assoc($result_coach)) {
-                                        if ($row['userId'] == $row_coach['user_id']) {
-                                            echo
-                                                '<option value="' . $row_coach['user_id'] . '" selected>' . $row_coach['first_name'] . " " . $row_coach['surname'] . '</option>';
-                                        } else {
-                                            echo
-                                                '<option value="' . $row_coach['user_id'] . '">' . $row_coach['first_name'] . " " . $row_coach['surname'] . '</option>';
-                                        }
-                                    }
-                                }
-                                echo '</select></td>';
-                                //-----------------------------
-                                echo '<td><select id="day" name="day">';
-                                $sql_day = "SELECT id as day_id, day.name as day FROM day";
-                                $rl = sqlQuery($db, $sql_day);
 
-                                if (mysqli_num_rows($rl) > 0) {
-                                    while ($row_day = mysqli_fetch_assoc($rl)) {
-                                        $day = $row_day['day_id'];
-                                        if ($row['dayId'] == $day) {
-                                            echo
-                                                '<option value="' . $day . '" selected>' . $row_day['day'] . '</option>';
-                                        } else {
-                                            echo
-                                                '<option value="' . $day . '">' . $row_day['day'] . '</option>';
-                                        }
-                                    }
-                                }
-                                echo '</select></td>';
+        <tr>
+            <td colspan="2">
+                <input type="hidden" name="new" value="<?php if(!empty($workout_id))echo $workout_id;else echo 1;?>"/>
+            </td>
+        </tr>
 
-                                echo '<td><input type="time" id="start_time" name="start_time" value="' . $row['start_time'] . '" required></td>';
-                                echo '<td><input type="time" id="end_time" name="end_time" value="' . $row['end_time'] . '" required></td>
-                                 
-                                    <td>
-                                        <input name="submit" type="submit" value="SAVE">
-                                    </td>
-                                  </tr>';
+        <?php
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                if ($row['workout_id'] == $w_id) {
+                    echo '<tr>
+                            <td><input name="workout" id="workout" type="text" value="' . $row['workout'] . '" required></td>';
+                    echo '<td><select id="coach" name="coach">';
+                    $sql_coach = "SELECT u.id as user_id, u.name as first_name, u.surname as surname FROM user u where user_type=2";
+                    $result_coach = sqlQuery($db, $sql_coach);
+
+                    if (mysqli_num_rows($result_coach) > 0) {
+                        while ($row_coach = mysqli_fetch_assoc($result_coach)) {
+                            if ($row['userId'] == $row_coach['user_id']) {
+                                echo
+                                    '<option value="' . $row_coach['user_id'] . '" selected>' . $row_coach['first_name'] . " " . $row_coach['surname'] . '</option>';
                             } else {
-                                echo '<tr>
-                                        <td>' . $row['workout'] . '</td>
-                                        <td>' . $row['first_name'] . " " . $row['surname'] . '</td>
-                                        <td>' . $row['day'] . '</td>
-                                        <td>' . $row['start_time'] . '</td>
-                                        <td>' . $row['end_time'] . '</td>
-            
-                                      
-                                    </tr>';
+                                echo
+                                    '<option value="' . $row_coach['user_id'] . '">' . $row_coach['first_name'] . " " . $row_coach['surname'] . '</option>';
                             }
                         }
                     }
-                    ?>
+                    echo '</select></td>';
+                    //-----------------------------
+                    echo '<td><select id="day" name="day">';
+                    $sql_day = "SELECT id as day_id, day.name as day FROM day";
+                    $rl = sqlQuery($db, $sql_day);
 
-                    </tbody>
-                </table>
-            </form>
-        </td>
-        <td class="adjust"></td>
-    </tr>
-</table>
+                    if (mysqli_num_rows($rl) > 0) {
+                        while ($row_day = mysqli_fetch_assoc($rl)) {
+                            $day = $row_day['day_id'];
+                            if ($row['dayId'] == $day) {
+                                echo
+                                    '<option value="' . $day . '" selected>' . $row_day['day'] . '</option>';
+                            } else {
+                                echo
+                                    '<option value="' . $day . '">' . $row_day['day'] . '</option>';
+                            }
+                        }
+                    }
+                    echo '</select></td>';
+
+                    echo '<td><input type="time" id="start_time" name="start_time" value="' . $row['start_time'] . '" required></td>';
+                    echo '<td><input type="time" id="end_time" name="end_time" value="' . $row['end_time'] . '" required></td>
+                     
+                        <td>
+                            <input name="submit" type="submit" value="SAVE">
+                        </td>
+                      </tr>';
+                } else {
+                    echo '<tr>
+                            <td>' . $row['workout'] . '</td>
+                            <td>' . $row['first_name'] . " " . $row['surname'] . '</td>
+                            <td>' . $row['day'] . '</td>
+                            <td>' . $row['start_time'] . '</td>
+                            <td>' . $row['end_time'] . '</td>
+
+                          
+                        </tr>';
+                }
+            }
+        }
+        ?>
+
+        </tbody>
+    </table>
+</form>
+
+
 <?php
 close_db_connection($db);
 include("footer.php");
